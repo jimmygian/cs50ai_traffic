@@ -63,7 +63,8 @@ def load_data(data_dir):
     labels = []
 
     # Get all category folders (digits only)
-    categories = [path for path in os.listdir(data_dir) if os.path.isdir(os.path.join(data_dir, path)) and path.isdigit()]
+    categories = [path for path in os.listdir(data_dir) if os.path.isdir(
+        os.path.join(data_dir, path)) and path.isdigit()]
 
     # Wrap outer loop with tqdm for progress bar
     for path in tqdm(categories, desc="Loading categories"):
@@ -95,7 +96,8 @@ def get_model():
     model = tf.keras.models.Sequential()
 
     # First convolutional layer: 32 filters, 3x3 kernel, ReLU activation
-    model.add(tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(IMG_WIDTH, IMG_HEIGHT, 3)))
+    model.add(tf.keras.layers.Conv2D(32, (3, 3), activation='relu', 
+                                     input_shape=(IMG_WIDTH, IMG_HEIGHT, 3)))
     model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2)))
 
     # Second convolutional layer: 64 filters
