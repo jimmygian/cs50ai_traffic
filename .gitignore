@@ -1,3 +1,4 @@
 gtsrb/
 gtsrb-small/
 .env/
+*.h5
