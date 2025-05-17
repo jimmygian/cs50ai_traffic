@@ -2,3 +2,4 @@ gtsrb/
 gtsrb-small/
 .env/
 *.h5
+venv
