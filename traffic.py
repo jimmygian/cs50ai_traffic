@@ -1,4 +1,4 @@
-import cv2
+import cv2 as cv
 import numpy as np
 import os
 import sys
@@ -58,7 +58,28 @@ def load_data(data_dir):
     be a list of integer labels, representing the categories for each of the
     corresponding `images`.
     """
-    raise NotImplementedError
+    images = []
+    labels = []
+    
+    for path in os.listdir(data_dir):
+        folder_path = os.path.join(data_dir, path)
+        if os.path.isdir(folder_path):    
+            label = int(path)    
+            
+            for file in os.listdir(folder_path):
+                abs_path = os.path.abspath(os.path.join(folder_path, file))
+                if os.path.isfile(abs_path) and abs_path.lower().endswith(".ppm"):                
+                    
+                    # Read Image
+                    img = cv.imread(abs_path, cv.IMREAD_COLOR)
+                    if img is not None:
+                        img_resized = cv.resize(img, (IMG_WIDTH, IMG_HEIGHT))
+                        images.append(img_resized)
+                        labels.append(label)
+                        
+    return (images, labels)
+    
+    # raise NotImplementedError
 
 
 def get_model():
